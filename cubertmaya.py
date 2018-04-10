@@ -6,9 +6,10 @@ import time
 OPACITY = 192
 
 class Cubert(object):
+    """Interface to control a 8x8x8 RGB cube (or simulation thereof)"""
     def __init__(self):
         self.colormap = [[20,20,20, OPACITY]] * 512
-        self.thread = threading.Thread(target=self.mlab_init)
+        self.thread = threading.Thread(target=self._mlab_init)
         self.thread.start()
         self.show()
        
@@ -30,17 +31,23 @@ class Cubert(object):
         self.mlab.draw()
                     
     def show(self):
+        """Make any changes on the cube visible"""
         if hasattr(self,'gui'):
-            self.gui.invoke_later(self.mlab_show)
+            self.gui.invoke_later(self._mlab_show)
         
-    def get_pixel_index(self, x, y, z):
+    def _get_pixel_index(self, x, y, z):
         return y + x*8 + z*64
         
     def set_pixel(self, x, y, z, colour):
+        """Set the pixel at x,y,z to the colour specified. colour should be a tuple of integers
+        representing red, green and blue respectively, with a maximum of 255.
+        Call show after you have finished making changes to make them visible on your cube"""
         colour = [20+int((i*235)/255) for i in colour]  + [OPACITY]
-        self.colormap[self.get_pixel_index(x, y, z)] = colour
+        self.colormap[self._get_pixel_index(x, y, z)] = colour
         
     def clear(self):
+        """Set all pixels to black (0,0,0).
+        Call show after you have finished making changes to make them visible"""
         self.colormap[:] = [[20,20,20,OPACITY]] * 512
         
         
