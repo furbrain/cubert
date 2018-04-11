@@ -21,6 +21,11 @@ Next create a `Cubert` instance: ```cube = cubert.Cubert()```
 
 Set a pixel at X:3, Y:4, Z:5 to green:
 ```cube.set_pixel_color(3,4,5, (0, 255, 0))```
+* (0,0,0) is at the front bottom left
+* (7,0,0) is at the front bottom right
+* (0,7,0) is at the front top left
+* (0,0,7) is at the back bottom left
+
 
 After changing any pixels, you then need to call
 ```cube.show()```
