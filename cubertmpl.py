@@ -3,6 +3,7 @@ from mpl_toolkits.mplot3d import Axes3D
 import numpy as np
 
 class Cubert(object):
+    """Interface to control a 8x8x8 RGB cube (or simulation thereof)"""
     def __init__(self):
         plt.ion()
         self.xs, self.ys, self.zs = [i.flatten() for i in np.mgrid[0:8:1, 0:8:1, 0:8:1]]
@@ -15,6 +16,7 @@ class Cubert(object):
         
         
     def show(self):
+        """Make any changes on the cube visible"""
         self.ax.clear()
         self.scatter = self.ax.scatter(self.xs, self.ys, self.zs, c= self.data)
         self.ax.set_axis_off()
@@ -26,6 +28,9 @@ class Cubert(object):
         return y + x*8 + z*64
         
     def set_pixel(self, x, y, z, colour):
+        """Set the pixel at x,y,z to the colour specified. colour should be a tuple of integers
+        representing red, green and blue respectively, with a maximum of 255.
+        Call show after you have finished making changes to make them visible on your cube"""
         colour = [0.1+0.9*(i/255.0)  for i in colour]
         self.data[self.get_pixel_index(x, y, z)] = colour
         
