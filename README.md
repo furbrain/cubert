@@ -17,7 +17,7 @@ Matplotlib:
 Running on actual cubert:
 ```import cubert as cubert```
 
-Next create a `Cubert` instance: ```cube = cubert.Cubert```
+Next create a `Cubert` instance: ```cube = cubert.Cubert()```
 
 Set a pixel at X:3, Y:4, Z:5 to green:
 ```cube.set_pixel_color(3,4,5, (0, 255, 0))```
