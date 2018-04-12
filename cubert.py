@@ -11,7 +11,7 @@ class Cubert(object):
     def __init__(self):
     
         # Create NeoPixel object with appropriate configuration.
-        self.strip = neopixel.Adafruit_NeoPixel(cls.LED_COUNT, cls.LED_PIN, cls.LED_FREQ_HZ, cls.LED_DMA, cls.LED_INVERT)
+        self.strip = neopixel.Adafruit_NeoPixel(self.LED_COUNT, self.LED_PIN, self.LED_FREQ_HZ, self.LED_DMA, self.LED_INVERT)
         # Intialize the library (must be called once before other functions).
         self.strip.begin()
 
@@ -24,19 +24,20 @@ class Cubert(object):
             x = 7-x
         if x % 2:
             y = 7-y
-        return y + x*8 + z*64        return y + x*8 + z*64
+        return y + x*8 + z*64
         
     def set_pixel(self, x, y, z, colour):
         """Set the pixel at x,y,z to the colour specified. colour should be a tuple of integers
         representing red, green and blue respectively, with a maximum of 255.
         Call show after you have finished making changes to make them visible on your cube"""
         index = self.get_pixel_index(x, y, z)
-        self.strip.setPixelColor(index, neopixel.Color(*colour))
+        self.strip.setPixelColorRGB(index, colour[1], colour[0], colour[2])
         
     def clear(self):
         """Set all pixels to black (0,0,0).
         Call show after you have finished making changes to make them visible"""
-        self.strip.clear()        
+	for i in range(self.LED_COUNT):
+		self.strip.setPixelColorRGB(i,0,0,0)
         
 if __name__=="__main__":
     import time
