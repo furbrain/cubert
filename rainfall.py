@@ -1,4 +1,4 @@
-import cubertmpl as cubert
+import cubertmaya as cubert
 import random
 import time
 
