@@ -4,7 +4,6 @@ import time
 
 RAIN_DENSITY=0.80
 
-cube = cubert.Cubert()
 class Raindrop(object):
     COLORS = [(255,255,255), 
               (192, 192, 192),
@@ -25,7 +24,9 @@ class Raindrop(object):
                 
     def dead(self):
         return self.pos < -len(self.COLORS)
-        
+
+cube = cubert.Cubert()
+    
 drops = []
 while True:
     time.sleep(0.05)
