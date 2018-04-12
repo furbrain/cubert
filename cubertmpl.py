@@ -12,8 +12,9 @@ class Cubert(object):
         self.ax = Axes3D(self.fig)
         self.ax.set_axis_off()
         self.ax.set_facecolor("black")
+        self.ax.view_init(24,-124)
+        self.ax.set_aspect("equal")
         self.data = [(0.1,0.1,0.1,0.75)]*512
-        
         
     def show(self):
         """Make any changes on the cube visible"""
@@ -25,7 +26,7 @@ class Cubert(object):
         plt.draw()
         
     def get_pixel_index(self, x, y, z):
-        return y + x*8 + z*64
+        return y + x*64 + z*8
         
     def set_pixel(self, x, y, z, colour):
         """Set the pixel at x,y,z to the colour specified. colour should be a tuple of integers

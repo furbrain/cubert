@@ -22,6 +22,8 @@ class Cubert(object):
         mlab.figure(bgcolor=(0,0,0))
         x, y, z = [i.flatten() for i in np.mgrid[0:8:1, 0:8:1, 0:8:1]]
         self.points = mlab.points3d(x, y, z, list(range(512)), scale_mode="none", scale_factor=0.4)
+        mlab.view(127,24, distance="auto")
+        mlab.roll(0)
         self.points.module_manager.scalar_lut_manager.lut.table = self.colormap
         self.gui = GUI
         mlab.show()
@@ -36,7 +38,7 @@ class Cubert(object):
             self.gui.invoke_later(self._mlab_show)
         
     def _get_pixel_index(self, x, y, z):
-        return y + x*8 + z*64
+        return x*64 + y*8 + 7-z
         
     def set_pixel(self, x, y, z, colour):
         """Set the pixel at x,y,z to the colour specified. colour should be a tuple of integers
