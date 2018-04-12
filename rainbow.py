@@ -22,7 +22,7 @@ def colour_func(x, y, z):
     offset = (pos*6.0/21)- index
     c1 = COLOURS[index]
     c2 = COLOURS[index+1]
-    colour = [c1[i]*(1.0-offset) + c2[i]*offset for i in range(3)]
+    colour = [int(c1[i]*(1.0-offset) + c2[i]*offset) for i in range(3)]
     return colour
 
 cube = cubert.Cubert()
